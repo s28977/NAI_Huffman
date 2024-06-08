@@ -25,6 +25,11 @@ class Subtree:
         else:
             return self.count < other.count
 
+    def __repr__(self):
+        return (f'{self.symbol.char}, {self.symbol.order}, {self.count}'
+                f'\nLeft son: {str(self.left)}'
+                f'\nRight son: {str(self.right)}')
+
 
 def join(left: Subtree, right: Subtree):
     parent = Subtree()
@@ -36,4 +41,3 @@ def join(left: Subtree, right: Subtree):
     else:
         parent.symbol = right.symbol
     return parent
-
