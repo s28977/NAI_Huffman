@@ -14,13 +14,21 @@ class BinaryHeap(PriorityQueue):
         return len(self._heap_list) - 1
 
     def find_min(self):
-        return self._heap_list[1]
+        if len(self) == 0:
+            return None
+        else:
+            return self._heap_list[1]
 
     def del_min(self):
-        res = self._heap_list[1]
-        self._heap_list[1] = self._heap_list.pop()
-        self._downheap(1)
-        return res
+        if len(self) == 0:
+            return None
+        if len(self) == 1:
+            return self._heap_list.pop()
+        else:
+            res = self._heap_list[1]
+            self._heap_list[1] = self._heap_list.pop()
+            self._downheap(1)
+            return res
 
     def insert(self, e):
         self._heap_list.append(e)
