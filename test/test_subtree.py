@@ -47,3 +47,18 @@ def test_correct_join():
     assert p_t_o_z_s.symbol.order == 1
     assert p_t_o_z_s.left == p_t
     assert p_t_o_z_s.right == o_z_s
+
+
+def test_correct_get_huffman_code():
+    z = Subtree(Symbol('z', 1, 3))
+    p = Subtree(Symbol('p', 2, 3))
+    s = Subtree(Symbol('s', 3, 5))
+    t = Subtree(Symbol('t', 4, 3))
+    o = Subtree(Symbol('o', 5, 1))
+    o_z = join(o, z)
+    p_t = join(p, t)
+    o_z_s = join(o_z, s)
+    p_t_o_z_s = join(p_t, o_z_s)
+    code_dict = {}
+    p_t_o_z_s.get_huffman_code(code_dict)
+    assert code_dict == dict(p='00', t='01', o='100', z='101', s='11')

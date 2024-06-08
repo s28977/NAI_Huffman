@@ -25,10 +25,21 @@ class Subtree:
         else:
             return self.count < other.count
 
-    def __repr__(self):
-        return (f'{self.symbol.char}, {self.symbol.order}, {self.count}'
-                f'\nLeft son: {str(self.left)}'
-                f'\nRight son: {str(self.right)}')
+    def __repr__(self, level=0):
+        indent = '\t' * level
+        left_repr = self.left.__repr__(level + 1) if self.left else 'None'
+        right_repr = self.right.__repr__(level + 1) if self.right else 'None'
+        return (f'{self.symbol.char}, {self.count}'
+                f'\n{indent}Left son: {left_repr}'
+                f'\n{indent}Right son: {right_repr}')
+
+    def get_huffman_code(self, code_dict: dict, bits=''):
+        if self.right is None and self.left is None:
+            code_dict[self.symbol.char] = bits
+        if self.left is not None:
+            self.left.get_huffman_code(code_dict, bits + '0')
+        if self.right is not None:
+            self.right.get_huffman_code(code_dict, bits + '1')
 
 
 def join(left: Subtree, right: Subtree):
@@ -41,3 +52,5 @@ def join(left: Subtree, right: Subtree):
     else:
         parent.symbol = right.symbol
     return parent
+
+
