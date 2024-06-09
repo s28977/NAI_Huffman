@@ -1,4 +1,5 @@
 import functools
+import re
 
 from .symbol import Symbol
 
@@ -26,15 +27,20 @@ class Subtree:
             return self.count < other.count
 
     def __repr__(self, level=0):
-        indent = '\t' * level
-        message = f'{indent}{self.count}'
+        indent_marker = '|'
+        element_marker = '-'
+        indent = f'{indent_marker}\t' * level
+        message = f'{indent}{element_marker} count: {self.count}'
         if self.left is None and self.right is None:
-            message += f' {self.symbol.char}'
+            if re.fullmatch(r'\s', self.symbol.char):
+                message += f', white character: {ord(self.symbol.char)} (decimal unicode code)'
+            else:
+                message += f', character: {self.symbol.char}'
         if self.left is not None:
-            message += (f'\n{indent}Left child:' +
+            message += (f'\n{indent}{element_marker} left child:' +
                         f'\n{self.left.__repr__(level + 1)}')
         if self.right is not None:
-            message += (f'\n{indent}Right child:' +
+            message += (f'\n{indent}{element_marker} right child:' +
                         f'\n{self.right.__repr__(level + 1)}')
         return message
 
@@ -47,6 +53,7 @@ class Subtree:
             self.right.get_huffman_code(code_dict, bits + '1')
 
 
+# static methods:
 def join(left: Subtree, right: Subtree):
     parent = Subtree()
     parent.left = left

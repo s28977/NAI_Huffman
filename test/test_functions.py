@@ -1,9 +1,9 @@
-from src.main import map_to_symbols
+from src.functions import map_to_symbols_list
 
 
 def test_map_to_symbols():
     string = 'abcabaaabcedfabaccafc'
-    symbols = map_to_symbols(string)
+    symbols = map_to_symbols_list(string)
     assert symbols[0].order == 0
     assert symbols[1].order == 1
     assert symbols[2].order == 2
