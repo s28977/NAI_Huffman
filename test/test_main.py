@@ -1,26 +1,26 @@
-from src.main import map_to_subtrees_list
+from src.main import map_to_symbols
 
 
-def test_map_to_subtrees_list():
+def test_map_to_symbols():
     string = 'abcabaaabcedfabaccafc'
-    subtrees = map_to_subtrees_list(string)
-    assert subtrees[0].symbol.order == 0
-    assert subtrees[1].symbol.order == 1
-    assert subtrees[2].symbol.order == 2
-    assert subtrees[3].symbol.order == 3
-    assert subtrees[4].symbol.order == 4
-    assert subtrees[5].symbol.order == 5
+    symbols = map_to_symbols(string)
+    assert symbols[0].order == 0
+    assert symbols[1].order == 1
+    assert symbols[2].order == 2
+    assert symbols[3].order == 3
+    assert symbols[4].order == 4
+    assert symbols[5].order == 5
 
-    assert subtrees[0].symbol.char == 'a'
-    assert subtrees[1].symbol.char == 'b'
-    assert subtrees[2].symbol.char == 'c'
-    assert subtrees[3].symbol.char == 'e'
-    assert subtrees[4].symbol.char == 'd'
-    assert subtrees[5].symbol.char == 'f'
+    assert symbols[0].char == 'a'
+    assert symbols[1].char == 'b'
+    assert symbols[2].char == 'c'
+    assert symbols[3].char == 'e'
+    assert symbols[4].char == 'd'
+    assert symbols[5].char == 'f'
 
-    assert subtrees[0].count == 8
-    assert subtrees[1].count == 4
-    assert subtrees[2].count == 5
-    assert subtrees[3].count == 1
-    assert subtrees[4].count == 1
-    assert subtrees[5].count == 2
+    assert symbols[0].count == 8
+    assert symbols[1].count == 4
+    assert symbols[2].count == 5
+    assert symbols[3].count == 1
+    assert symbols[4].count == 1
+    assert symbols[5].count == 2
