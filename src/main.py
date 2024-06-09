@@ -30,7 +30,7 @@ def encode(sequence, code_dict):
     return encoded_sequence
 
 
-sequence = 'abcabaaabcedfabaccafc'
+sequence = 'aabcedef'
 symbols = map_to_symbols(sequence)
 subtrees = map_to_subtrees(symbols)
 pq = BinaryHeap(subtrees)
