@@ -22,7 +22,7 @@ if __name__ == '__main__':
     print(root)
 
     code_dict = {}
-    root.get_huffman_code(code_dict)
+    root.get_huffman_code_dict(code_dict)
     print(f'\n{'-' * 10}Encoding{'-' * 10}\n')
     print(code_dict)
 

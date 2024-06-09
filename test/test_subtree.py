@@ -60,5 +60,5 @@ def test_correct_get_huffman_code():
     o_z_s = join(o_z, s)
     p_t_o_z_s = join(p_t, o_z_s)
     code_dict = {}
-    p_t_o_z_s.get_huffman_code(code_dict)
+    p_t_o_z_s.get_huffman_code_dict(code_dict)
     assert code_dict == dict(p='00', t='01', o='100', z='101', s='11')

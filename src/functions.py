@@ -1,3 +1,5 @@
+import re
+
 from src.model.subtree import Subtree
 from src.model.symbol import Symbol
 
@@ -25,5 +27,7 @@ def map_to_subtrees_list(symbols):
 def encode(sequence, code_dict):
     encoded_sequence = ''
     for char in sequence:
+        if re.fullmatch(r'\s', char):
+            char = f'U+{ord(char)}'
         encoded_sequence += code_dict[char]
     return encoded_sequence

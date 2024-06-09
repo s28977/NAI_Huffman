@@ -44,13 +44,17 @@ class Subtree:
                         f'\n{self.right.__repr__(level + 1)}')
         return message
 
-    def get_huffman_code(self, code_dict: dict, bits=''):
+    def get_huffman_code_dict(self, code_dict: dict, bits=''):
         if self.left is None and self.right is None:
-            code_dict[self.symbol.char] = bits
+            if re.fullmatch(r'\s', self.symbol.char):
+                char = f'U+{ord(self.symbol.char)}'
+            else:
+                char = self.symbol.char
+            code_dict[char] = bits
         if self.left is not None:
-            self.left.get_huffman_code(code_dict, bits + '0')
+            self.left.get_huffman_code_dict(code_dict, bits + '0')
         if self.right is not None:
-            self.right.get_huffman_code(code_dict, bits + '1')
+            self.right.get_huffman_code_dict(code_dict, bits + '1')
 
 
 # static methods:
